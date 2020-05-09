@@ -2,7 +2,6 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -17,6 +16,8 @@ import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
 public class BaseWebTest {
 
+    // TODO: Figure out how to download files for extensions, then get them in a resources folder
+
     // Path to all extensions we want in our test browser
     private String[] EXTENSION_PATHS = new String[] {"INSERT_VELOCITY_RAPTOR_PATH_HERE",
         "INSERT_CHROPATH_PATH_HERE"};
@@ -27,10 +28,10 @@ public class BaseWebTest {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-
         setWebDriver(driver);
     }
 
+    // Setting up extensions for the driver
     private ChromeOptions getChromeOptions(){
         ChromeOptions options = new ChromeOptions();
         List<File> extensionFiles = new ArrayList<File>();

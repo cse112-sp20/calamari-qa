@@ -3,7 +3,9 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-/* Example Page Object for a LoginPage */
+/* Example Page Object for a LoginPage , This file is nothing but an example of a page object. S
+* Since we are testing an extension, we obviously may not need many objects besides just the ExtensionPage.
+* However, if we want to test how our raptor looks on certain pages, we could code a few */
 public class LoginPage extends BasePage {
 
     // TODO: Insert xpath for these elements here
