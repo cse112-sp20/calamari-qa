@@ -6,7 +6,12 @@
 
     <groupId>com.calimari</groupId>
     <artifactId>calimari-qa</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>tests</module>
+        <module>ui</module>
+    </modules>
 
     <dependencies>
         <dependency>
