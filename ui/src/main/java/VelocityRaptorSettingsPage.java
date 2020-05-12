@@ -3,18 +3,17 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-// This is the main Page Object for our extention
-public class ExtensionPage extends BasePage {
+public class VelocityRaptorSettingsPage extends SettingsPage {
 
-    private final SelenideElement extensionHeader = $x("");
+    private final SelenideElement velocityRaptorHeader = $x("");
 
-    public ExtensionPage() {
+    public VelocityRaptorSettingsPage() {
         verifyIsOpened();
     }
 
     @Override
     public void verifyIsOpened() {
-        extensionHeader.shouldBe(Condition.visible);
+        velocityRaptorHeader.shouldBe(Condition.visible);
     }
 
 }

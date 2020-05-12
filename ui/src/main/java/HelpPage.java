@@ -3,18 +3,17 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-// This is the main Page Object for our extention
-public class ExtensionPage extends BasePage {
+public class HelpPage extends SettingsPage {
 
-    private final SelenideElement extensionHeader = $x("");
+    private final SelenideElement helpHeader = $x("");
 
-    public ExtensionPage() {
+    public HelpPage() {
         verifyIsOpened();
     }
 
     @Override
     public void verifyIsOpened() {
-        extensionHeader.shouldBe(Condition.visible);
+        helpHeader.shouldBe(Condition.visible);
     }
 
 }

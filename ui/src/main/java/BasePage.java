@@ -1,9 +1,21 @@
-/**
- * BasePage is the parent class for all PageObjects. It should contain elements and methods that
- * are universal accross all pages extending from it. For example, no matter what page you are on,
- * there may be a dropdown menu on the top left of the screen, or a profile button. That would
- * be something to be included in BasePage.
- */
+import com.codeborne.selenide.SelenideElement;
+
+import static com.codeborne.selenide.Selenide.$x;
+
 public abstract class BasePage {
+
+    private final SelenideElement extensionButton = $x("");
+
+    // must be implemented in extending classes
+    public abstract void verifyIsOpened();
+
+    public ExtensionPage openExtension() {
+        extensionButton.click();
+        return new ExtensionPage();
+    }
+
+    public void closeExtension() {
+        extensionButton.click();
+    }
 
 }
