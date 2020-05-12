@@ -22,8 +22,8 @@ public class BaseWebTest {
     private String[] EXTENSION_PATHS = new String[] {"INSERT_VELOCITY_RAPTOR_PATH_HERE",
         "INSERT_CHROPATH_PATH_HERE"};
 
-    @BeforeMethod()
-    private void startBrowser(){
+    @BeforeMethod(alwaysRun = true)
+    public void startBrowser(){
         ChromeOptions chromeOptions = getChromeOptions();
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver(chromeOptions);
@@ -34,14 +34,15 @@ public class BaseWebTest {
     // Setting up extensions for the driver
     private ChromeOptions getChromeOptions(){
         ChromeOptions options = new ChromeOptions();
-        List<File> extensionFiles = new ArrayList<File>();
+        // Uncomment once we have the extension crx file working
+        /*List<File> extensionFiles = new ArrayList<File>();
         Arrays.stream(EXTENSION_PATHS).forEach(path -> extensionFiles.add(new File(path)));
-        options.addExtensions(extensionFiles);
+        options.addExtensions(extensionFiles);*/
         return options;
     }
 
     @AfterMethod(alwaysRun = true)
-    private void closeBrowser(){
+    public void closeBrowser(){
         getWebDriver().quit();
     }
 

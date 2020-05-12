@@ -12,7 +12,7 @@ import static org.testng.Assert.assertTrue;
  */
 public class LoginTest extends BaseWebTest {
 
-    private LoginPage loginPage;
+    private GithubAuthenticationPage loginPage;
     private String correctEmail;
     private String correctPassword;
     private String incorrectPassword;
@@ -22,12 +22,12 @@ public class LoginTest extends BaseWebTest {
         correctEmail = "awesomeguy@gmail.com";
         correctPassword = "correct";
         incorrectPassword = "incorrect";
-        loginPage = new LoginPage();
+        loginPage = new GithubAuthenticationPage();
     }
 
     @Test
     public void testLoginCorrectCredentials(){
-        loginPage.setEmail(correctEmail)
+        loginPage.setUsername(correctEmail)
             .setPassword(correctPassword)
             .clickLogin();
         boolean isLoggedIn = true; // This is just a filler
@@ -36,7 +36,7 @@ public class LoginTest extends BaseWebTest {
 
     @Test
     public void testLoginIncorrectCredentials(){
-        loginPage.setEmail(correctEmail)
+        loginPage.setUsername(correctEmail)
             .setPassword(incorrectPassword)
             .clickLogin();
         boolean isLoggedIn = false; // This is just a filler
