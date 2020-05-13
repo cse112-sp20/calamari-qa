@@ -1,4 +1,5 @@
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$x;
@@ -15,6 +16,10 @@ public class ExtensionPage extends BasePage {
     @Override
     public void verifyIsOpened() {
         extensionHeader.shouldBe(Condition.visible);
+    }
+
+    public SelenideElement getExtensionHeader(){
+        return extensionHeader;
     }
 
 }

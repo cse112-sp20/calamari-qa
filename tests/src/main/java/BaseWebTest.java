@@ -6,6 +6,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,11 +18,13 @@ import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
 public class BaseWebTest {
 
-    // TODO: Figure out how to download files for extensions, then get them in a resources folder
+    Path resourcesDirectory = Paths.get("src","main", "resources", "extensions");
 
-    // Path to all extensions we want in our test browser
-    private String[] EXTENSION_PATHS = new String[] {"INSERT_VELOCITY_RAPTOR_PATH_HERE",
-        "INSERT_CHROPATH_PATH_HERE"};
+    // TODO: Add path to Velocity Raptor extension
+    private String[] EXTENSION_PATHS = new String[] {
+        resourcesDirectory.toFile().getAbsolutePath() + "/chropath.crx" };
+
+    protected StartPage startPage;
 
     @BeforeMethod(alwaysRun = true)
     public void startBrowser(){
@@ -29,15 +33,15 @@ public class BaseWebTest {
         WebDriver driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         setWebDriver(driver);
+        startPage = new StartPage();
     }
 
     // Setting up extensions for the driver
     private ChromeOptions getChromeOptions(){
         ChromeOptions options = new ChromeOptions();
-        // Uncomment once we have the extension crx file working
-        /*List<File> extensionFiles = new ArrayList<File>();
+        List<File> extensionFiles = new ArrayList<File>();
         Arrays.stream(EXTENSION_PATHS).forEach(path -> extensionFiles.add(new File(path)));
-        options.addExtensions(extensionFiles);*/
+        options.addExtensions(extensionFiles);
         return options;
     }
 
