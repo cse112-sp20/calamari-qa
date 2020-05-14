@@ -11,6 +11,7 @@
     <modules>
         <module>tests</module>
         <module>ui</module>
+        <module>constants</module>
     </modules>
 
     <dependencies>

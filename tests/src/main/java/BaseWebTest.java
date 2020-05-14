@@ -1,3 +1,4 @@
+import com.codeborne.selenide.Selenide;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,13 +19,16 @@ import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
 public class BaseWebTest {
 
+    // TODO: Change to VelocityRaptor later
+    private final String extensionFile = "chrome-extension://ljngjbnaijcbncmcnjfhigebomdlkcjo/extension/popup.html";
+
     Path resourcesDirectory = Paths.get("src","main", "resources", "extensions");
+
+    protected GoogleLoginPage googleLoginPage;
 
     // TODO: Add path to Velocity Raptor extension
     private String[] EXTENSION_PATHS = new String[] {
         resourcesDirectory.toFile().getAbsolutePath() + "/chropath.crx" };
-
-    protected StartPage startPage;
 
     @BeforeMethod(alwaysRun = true)
     public void startBrowser(){
@@ -32,8 +36,10 @@ public class BaseWebTest {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.get(extensionFile); // so that we can access the elements inside of popup.html
         setWebDriver(driver);
-        startPage = new StartPage();
+        Selenide.open("https://accounts.google.com/ServiceLogin?service=chromiumsync");
+        googleLoginPage = new GoogleLoginPage();
     }
 
     // Setting up extensions for the driver
