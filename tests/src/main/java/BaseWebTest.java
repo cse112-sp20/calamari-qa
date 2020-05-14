@@ -40,8 +40,8 @@ public class BaseWebTest {
     private ChromeOptions getChromeOptions() {
         ChromeOptions options = new ChromeOptions();
         List<File> extensionFiles = new ArrayList<File>();
-        Arrays.stream(EXTENSIONS).forEach(path -> extensionFiles.add(new File(
-            resourcesDirectory.toFile().getAbsolutePath() + "/" + path)));
+        Arrays.stream(EXTENSIONS).forEach(extension -> extensionFiles.add(new File(
+            resourcesDirectory.toFile().getAbsolutePath() + "/" + extension)));
         options.addExtensions(extensionFiles);
         return options;
     }
