@@ -1,17 +1,14 @@
-import com.codeborne.selenide.SelenideElement;
-
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public abstract class BasePage {
 
-    // TODO: Change later, currently this refers to Chropath and not Velocity Raptor obviously
-    private static final SelenideElement extensionHeader = $x("//title[contains(text(), 'Development tool')]");
+    // TODO: Change to VelocityRaptor later
+    private final String extensionLink = "chrome-extension://ljngjbnaijcbncmcnjfhigebomdlkcjo/extension/popup.html";
 
-    // must be implemented in extending classes
     public abstract void verifyIsOpened();
 
-    public static ExtensionPage openExtension() {
-        switchTo().frame(extensionHeader);
+    public ExtensionPage openExtension() {
+        getWebDriver().get(extensionLink);
         return new ExtensionPage();
     }
 

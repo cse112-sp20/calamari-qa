@@ -13,4 +13,10 @@ public class LoginGoogleTest extends BaseWebTest {
         assertTrue(googleLoginPage.isOnWelcomePage());
     }
 
+    @Test
+    public void openExtensionTest(){
+        var extensionPage = googleLoginPage.openExtension();
+        String hi = "hi";
+    }
+
 }

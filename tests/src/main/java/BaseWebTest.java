@@ -19,8 +19,6 @@ import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
 public class BaseWebTest {
 
-    // TODO: Change to VelocityRaptor later
-    private final String extensionFile = "chrome-extension://ljngjbnaijcbncmcnjfhigebomdlkcjo/extension/popup.html";
 
     Path resourcesDirectory = Paths.get("src","main", "resources", "extensions");
 
@@ -36,9 +34,8 @@ public class BaseWebTest {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.get(extensionFile); // so that we can access the elements inside of popup.html
         setWebDriver(driver);
-        Selenide.open("https://accounts.google.com/ServiceLogin?service=chromiumsync");
+        driver.get("https://accounts.google.com/ServiceLogin?service=chromiumsync");
         googleLoginPage = new GoogleLoginPage();
     }
 
