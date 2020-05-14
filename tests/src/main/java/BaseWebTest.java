@@ -21,8 +21,7 @@ public class BaseWebTest {
     Path resourcesDirectory = Paths.get("src","main", "resources", "extensions");
 
     // TODO: Add path to Velocity Raptor extension
-    private String[] EXTENSION_PATHS = new String[] {
-        resourcesDirectory.toFile().getAbsolutePath() + "/chropath.crx" };
+    private String[] EXTENSIONS = new String[] {"chropath.crx"};
 
     protected GoogleLoginPage googleLoginPage;
 
@@ -41,7 +40,8 @@ public class BaseWebTest {
     private ChromeOptions getChromeOptions() {
         ChromeOptions options = new ChromeOptions();
         List<File> extensionFiles = new ArrayList<File>();
-        Arrays.stream(EXTENSION_PATHS).forEach(path -> extensionFiles.add(new File(path)));
+        Arrays.stream(EXTENSIONS).forEach(path -> extensionFiles.add(new File(
+            resourcesDirectory.toFile().getAbsolutePath() + "/" + path)));
         options.addExtensions(extensionFiles);
         return options;
     }
