@@ -13,7 +13,7 @@ Libraries used:
 - With Intellij IDEA, hit import project from existing sources
 - When prompted, select the pom.xml file in the base directory 
 - After that, everything should be correctly set up.
-
+- Pick any test in tests/src/main/java and go ahead and run!
 - Note that this should be useable with other IDEs as well, you would just need 
 to use mvn (Maven) from the CLI. Although I think IDEA is smoothest for java programming,
 since stuff like maven is managed automatically.
