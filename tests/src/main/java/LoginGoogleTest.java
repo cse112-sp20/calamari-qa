@@ -8,13 +8,13 @@ public class LoginGoogleTest extends BaseWebTest {
     private String password = "andrewpassword";
 
     @Test
-    public void testLoginGoogle(){
+    public void testLoginGoogle() {
         googleLoginPage.loginAsUser(email, password);
         assertTrue(googleLoginPage.isOnWelcomePage());
     }
 
     @Test
-    public void openExtensionTest(){
+    public void openExtensionTest() {
         var extensionPage = googleLoginPage.openExtension();
         String hi = "hi";
     }

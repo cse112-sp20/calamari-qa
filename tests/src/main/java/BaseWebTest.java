@@ -19,7 +19,6 @@ import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
 public class BaseWebTest {
 
-
     Path resourcesDirectory = Paths.get("src","main", "resources", "extensions");
 
     protected GoogleLoginPage googleLoginPage;
@@ -29,7 +28,7 @@ public class BaseWebTest {
         resourcesDirectory.toFile().getAbsolutePath() + "/chropath.crx" };
 
     @BeforeMethod(alwaysRun = true)
-    public void startBrowser(){
+    public void startBrowser() {
         ChromeOptions chromeOptions = getChromeOptions();
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver(chromeOptions);
@@ -40,7 +39,7 @@ public class BaseWebTest {
     }
 
     // Setting up extensions for the driver
-    private ChromeOptions getChromeOptions(){
+    private ChromeOptions getChromeOptions() {
         ChromeOptions options = new ChromeOptions();
         List<File> extensionFiles = new ArrayList<File>();
         Arrays.stream(EXTENSION_PATHS).forEach(path -> extensionFiles.add(new File(path)));
@@ -49,7 +48,7 @@ public class BaseWebTest {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void closeBrowser(){
+    public void closeBrowser() {
         getWebDriver().quit();
     }
 
