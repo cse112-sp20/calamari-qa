@@ -15,8 +15,7 @@ public class LoginGoogleTest extends BaseWebTest {
 
     @Test
     public void openExtensionTest() {
-        var extensionPage = googleLoginPage.openExtension();
-        String hi = "hi";
+        googleLoginPage.openExtension();
     }
 
 }
