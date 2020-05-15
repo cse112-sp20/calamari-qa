@@ -1,21 +1,15 @@
-import com.codeborne.selenide.SelenideElement;
-
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public abstract class BasePage {
 
-    private final SelenideElement extensionButton = $x("");
+    // TODO: Change to VelocityRaptor later
+    private final String extensionLink = "chrome-extension://ljngjbnaijcbncmcnjfhigebomdlkcjo/extension/popup.html";
 
-    // must be implemented in extending classes
     public abstract void verifyIsOpened();
 
     public ExtensionPage openExtension() {
-        extensionButton.click();
+        getWebDriver().get(extensionLink);
         return new ExtensionPage();
-    }
-
-    public void closeExtension() {
-        extensionButton.click();
     }
 
 }

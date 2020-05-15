@@ -6,6 +6,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,33 +18,36 @@ import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
 public class BaseWebTest {
 
-    // TODO: Figure out how to download files for extensions, then get them in a resources folder
+    Path resourcesDirectory = Paths.get("src","main", "resources", "extensions");
 
-    // Path to all extensions we want in our test browser
-    private String[] EXTENSION_PATHS = new String[] {"INSERT_VELOCITY_RAPTOR_PATH_HERE",
-        "INSERT_CHROPATH_PATH_HERE"};
+    // TODO: Add path to Velocity Raptor extension
+    private static final String[] EXTENSIONS = new String[] {"chropath.crx"};
+
+    protected GoogleLoginPage googleLoginPage;
 
     @BeforeMethod(alwaysRun = true)
-    public void startBrowser(){
+    public void startBrowser() {
         ChromeOptions chromeOptions = getChromeOptions();
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         setWebDriver(driver);
+        driver.get("https://accounts.google.com/ServiceLogin?service=chromiumsync");
+        googleLoginPage = new GoogleLoginPage();
     }
 
     // Setting up extensions for the driver
-    private ChromeOptions getChromeOptions(){
+    private ChromeOptions getChromeOptions() {
         ChromeOptions options = new ChromeOptions();
-        // Uncomment once we have the extension crx file working
-        /*List<File> extensionFiles = new ArrayList<File>();
-        Arrays.stream(EXTENSION_PATHS).forEach(path -> extensionFiles.add(new File(path)));
-        options.addExtensions(extensionFiles);*/
+        List<File> extensionFiles = new ArrayList<File>();
+        Arrays.stream(EXTENSIONS).forEach(extension -> extensionFiles.add(new File(
+            resourcesDirectory.toFile().getAbsolutePath() + "/" + extension)));
+        options.addExtensions(extensionFiles);
         return options;
     }
 
     @AfterMethod(alwaysRun = true)
-    public void closeBrowser(){
+    public void closeBrowser() {
         getWebDriver().quit();
     }
 
