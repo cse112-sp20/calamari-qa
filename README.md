@@ -1,4 +1,4 @@
-# Calimari - QA (will fill in more later)
+# Calimari - QA 
 
 Framework for testing Velocity Raptor chrome extension by CalamariCrew.
 
