@@ -7,6 +7,8 @@ public class VelocityRaptorSettingsPage extends SettingsPage {
 
     private final SelenideElement velocityRaptorHeader = $x("");
 
+    private final SelenideElement headGearDropdown = $x("");
+
     public VelocityRaptorSettingsPage() {
         verifyIsOpened();
     }
