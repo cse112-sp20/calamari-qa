@@ -8,6 +8,8 @@ public class ExtensionPage extends BasePage {
     // TODO: Replace header with Velocity Raptor header
     private final SelenideElement extensionHeader = $x("//img[@class='logo']");
 
+    private final SelenideElement settingsIcon = $x("");
+
     public ExtensionPage() {
         verifyIsOpened();
     }
@@ -15,6 +17,11 @@ public class ExtensionPage extends BasePage {
     @Override
     public void verifyIsOpened() {
         extensionHeader.shouldBe(Condition.visible);
+    }
+
+    public SettingsPage openSettingsPage(){
+        settingsIcon.click();
+        return new GeneralSettingsPage();
     }
 
 }

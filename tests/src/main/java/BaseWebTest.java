@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
+import static org.testng.Assert.assertTrue;
 
 public class BaseWebTest {
 
@@ -44,6 +45,11 @@ public class BaseWebTest {
             resourcesDirectory.toFile().getAbsolutePath() + "/" + extension)));
         options.addExtensions(extensionFiles);
         return options;
+    }
+
+    protected void loginGoogleAndVerify(String email, String password){
+        googleLoginPage.loginAsUser(email, password);
+        assertTrue(googleLoginPage.isOnWelcomePage());
     }
 
     @AfterMethod(alwaysRun = true)
