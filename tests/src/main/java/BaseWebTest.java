@@ -21,8 +21,7 @@ public class BaseWebTest {
 
     Path resourcesDirectory = Paths.get("src","main", "resources", "extensions");
 
-    // TODO: Add path to Velocity Raptor extension
-    private static final String[] EXTENSIONS = new String[] {"chropath.crx"};
+    private static final String[] EXTENSIONS = new String[] {"velocity_raptor.crx"};
 
     protected GoogleLoginPage googleLoginPage;
 
