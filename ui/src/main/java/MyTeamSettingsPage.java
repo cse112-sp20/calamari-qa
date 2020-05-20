@@ -5,7 +5,7 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class MyTeamSettingsPage extends SettingsPage {
 
-    private final SelenideElement myTeamHeader = $x("");
+    private final SelenideElement myTeamHeader = $x("//div[contains(text(),'My Team')]");
 
     public MyTeamSettingsPage() {
         verifyIsOpened();

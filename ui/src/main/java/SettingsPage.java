@@ -2,16 +2,15 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-// This is the base page for settings, extend from it for settings tabs
 public abstract class SettingsPage extends BasePage {
 
-    private final SelenideElement generalSettingsLink = $x("");
+    private final SelenideElement generalSettingsLink = $x("//a[contains(text(),'General')]");
 
-    private final SelenideElement velocityRaptorSettingsLink = $x("");
+    private final SelenideElement velocityRaptorSettingsLink = $x("//a[contains(text(),'VelocityRaptor')]");
 
-    private final SelenideElement myTeamSettingsLink = $x("");
+    private final SelenideElement myTeamSettingsLink = $x("//a[contains(text(),'My Team')]");
 
-    private final SelenideElement helpSettingsLink = $x("");
+    private final SelenideElement githubRepoSettingsLink = $x("//a[contains(text(),'Github Repo')]");
 
     public GeneralSettingsPage openGeneralSettingsPage() {
         generalSettingsLink.click();
@@ -28,9 +27,9 @@ public abstract class SettingsPage extends BasePage {
         return new MyTeamSettingsPage();
     }
 
-    public HelpPage openHelpPage() {
-        helpSettingsLink.click();
-        return new HelpPage();
+    public GithubRepoSettingsPage openGithubRepoSettings() {
+        githubRepoSettingsLink.click();
+        return new GithubRepoSettingsPage();
     }
 
 }

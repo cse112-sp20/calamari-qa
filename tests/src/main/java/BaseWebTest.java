@@ -23,7 +23,7 @@ public class BaseWebTest {
 
     private static final String[] EXTENSIONS = new String[] {"velocity_raptor.crx"};
 
-    protected GoogleLoginPage googleLoginPage;
+    protected ExtensionPage extensionPage;
 
     @BeforeMethod(alwaysRun = true)
     public void startBrowser() {
@@ -32,8 +32,7 @@ public class BaseWebTest {
         WebDriver driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         setWebDriver(driver);
-        driver.get("https://accounts.google.com/ServiceLogin?service=chromiumsync");
-        googleLoginPage = new GoogleLoginPage();
+        extensionPage = BasePage.openExtension();
     }
 
     // Setting up extensions for the driver
@@ -44,11 +43,6 @@ public class BaseWebTest {
             resourcesDirectory.toFile().getAbsolutePath() + "/" + extension)));
         options.addExtensions(extensionFiles);
         return options;
-    }
-
-    protected void loginGoogleAndVerify(String email, String password){
-        googleLoginPage.loginAsUser(email, password);
-        assertTrue(googleLoginPage.isOnWelcomePage());
     }
 
     @AfterMethod(alwaysRun = true)
