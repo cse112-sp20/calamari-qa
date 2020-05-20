@@ -20,7 +20,7 @@ public class BaseWebTest {
 
     Path resourcesDirectory = Paths.get("src","main", "resources", "extensions");
 
-    private static final String[] EXTENSIONS = new String[] {"chropath.crx", "velocity_raptor.crx"};
+    private static final String[] EXTENSIONS = new String[] {"velocity_raptor.crx"};
 
     protected GoogleLoginPage googleLoginPage;
 
