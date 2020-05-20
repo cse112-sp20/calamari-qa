@@ -12,6 +12,8 @@ public abstract class SettingsPage extends BasePage {
 
     private final SelenideElement githubRepoSettingsLink = $x("//a[contains(text(),'Github Repo')]");
 
+    private final SelenideElement backButton = $x("//i[@class='fa fa-arrow-left ']");
+
     public GeneralSettingsPage openGeneralSettingsPage() {
         generalSettingsLink.click();
         return new GeneralSettingsPage();
@@ -30,6 +32,11 @@ public abstract class SettingsPage extends BasePage {
     public GithubRepoSettingsPage openGithubRepoSettings() {
         githubRepoSettingsLink.click();
         return new GithubRepoSettingsPage();
+    }
+
+    public ExtensionPage backToExtensionPage(){
+        backButton.click();
+        return new ExtensionPage();
     }
 
 }
