@@ -15,15 +15,15 @@ import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
+import static org.testng.Assert.assertTrue;
 
 public class BaseWebTest {
 
     Path resourcesDirectory = Paths.get("src","main", "resources", "extensions");
 
-    // TODO: Add path to Velocity Raptor extension
-    private static final String[] EXTENSIONS = new String[] {"chropath.crx"};
+    private static final String[] EXTENSIONS = new String[] {"velocity_raptor.crx"};
 
-    protected GoogleLoginPage googleLoginPage;
+    protected ExtensionPage extensionPage;
 
     @BeforeMethod(alwaysRun = true)
     public void startBrowser() {
@@ -32,8 +32,7 @@ public class BaseWebTest {
         WebDriver driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         setWebDriver(driver);
-        driver.get("https://accounts.google.com/ServiceLogin?service=chromiumsync");
-        googleLoginPage = new GoogleLoginPage();
+        extensionPage = BasePage.openExtension();
     }
 
     // Setting up extensions for the driver
