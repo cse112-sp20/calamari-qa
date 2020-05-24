@@ -47,7 +47,7 @@ public class ExtensionPage extends BasePage {
 
     public boolean isRaptorWearingAccessory(String accessoryName){
         // TODO: Insert path for specific accessory containing accessoryName as attribute
-        if (raptorImage.$x(String.format("", accessoryName)).exists()){
+        if (raptorImage.$(String.format("img[alt='%s']", accessoryName)).exists()){
             return true;
         }
         return false;

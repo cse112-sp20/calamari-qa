@@ -25,4 +25,9 @@ public class VelocityRaptorSettingsPage extends SettingsPage {
         return this;
     }
 
+    public VelocityRaptorSettingsPage selectAccessoryByName(String accessoryName){
+        $(String.format("img[alt='%s']", accessoryName)).click();
+        return this;
+    }
+
 }
