@@ -8,7 +8,7 @@ public class VelocityRaptorSettingsPage extends SettingsPage {
 
     private final SelenideElement velocityRaptorHeader = $x("//div[contains(text(),'My VelocityRaptor')]");
 
-    private final SelenideElement accessoryTypeDropdown = $x("");
+    private final SelenideElement accessoryTypeDropdown = $("select[class='options']");
 
     public VelocityRaptorSettingsPage() {
         verifyIsOpened();
@@ -26,7 +26,9 @@ public class VelocityRaptorSettingsPage extends SettingsPage {
     }
 
     public VelocityRaptorSettingsPage selectAccessoryByName(String accessoryName){
-        $(String.format("img[alt='%s']", accessoryName)).click();
+        SelenideElement element = $(String.format("img[alt='%s']", accessoryName));
+        SelenideElement elementTwo = $(String.format("img[alt='%s']", accessoryName)).parent();
+        $(String.format("img[alt='%s']", accessoryName)).parent().click();
         return this;
     }
 

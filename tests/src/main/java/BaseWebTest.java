@@ -3,7 +3,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -25,7 +27,7 @@ public class BaseWebTest {
 
     protected ExtensionPage extensionPage;
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeTest(alwaysRun = true)
     public void startBrowser() {
         ChromeOptions chromeOptions = getChromeOptions();
         WebDriverManager.chromedriver().setup();
@@ -45,7 +47,7 @@ public class BaseWebTest {
         return options;
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterTest(alwaysRun = true)
     public void closeBrowser() {
         getWebDriver().quit();
     }
