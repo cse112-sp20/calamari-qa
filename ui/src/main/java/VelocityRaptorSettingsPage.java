@@ -26,7 +26,11 @@ public class VelocityRaptorSettingsPage extends SettingsPage {
     }
 
     public VelocityRaptorSettingsPage selectAccessoryByName(String accessoryName){
-        $(String.format("img[alt='%s']", accessoryName),1).parent().click();
+        if ($(String.format("img[alt='%s']", accessoryName),1).exists()){
+            $(String.format("img[alt='%s']", accessoryName),1).parent().click();
+        } else {
+            $(String.format("img[alt='%s']", accessoryName)).parent().click();
+        }
         return this;
     }
 

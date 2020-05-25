@@ -28,11 +28,12 @@ public class ChangeAccessoriesTest extends BaseWebTest {
     } */
 
 
+    @Test
     public void testChangeTailGear() {
         extensionPage = raptorSettingsPage.setAccessoryType(AccessoryTypes.TAIL)
             .selectAccessoryByName(AccessoryNames.SPIKED_ORANGE_TAIL)
             .backToExtensionPage();
-        assertTrue(extensionPage.isRaptorWearingAccessory(AccessoryNames.SPIKED_ORANGE_TAIL));
+        assertTrue(extensionPage.isRaptorWearingAccessory("Spiked Orange Tail Accesory"));
     }
 
     @Test
@@ -40,7 +41,7 @@ public class ChangeAccessoriesTest extends BaseWebTest {
         extensionPage = raptorSettingsPage.setAccessoryType(AccessoryTypes.HAND)
             .selectAccessoryByName(AccessoryNames.SABER)
             .backToExtensionPage();
-        assertTrue(extensionPage.isRaptorWearingAccessory(AccessoryNames.SABER));
+        assertTrue(extensionPage.isRaptorWearingAccessory("Saber Accesory"));
     }
 
 }
