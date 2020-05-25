@@ -26,9 +26,7 @@ public class VelocityRaptorSettingsPage extends SettingsPage {
     }
 
     public VelocityRaptorSettingsPage selectAccessoryByName(String accessoryName){
-        SelenideElement element = $(String.format("img[alt='%s']", accessoryName));
-        SelenideElement elementTwo = $(String.format("img[alt='%s']", accessoryName)).parent();
-        $(String.format("img[alt='%s']", accessoryName)).parent().click();
+        $(String.format("img[alt='%s']", accessoryName),1).parent().click();
         return this;
     }
 
