@@ -24,11 +24,6 @@ public abstract class SettingsPage extends BasePage {
         return new VelocityRaptorSettingsPage();
     }
 
-    public MyTeamSettingsPage openMyTeamSettingsPage() {
-        myTeamSettingsLink.click();
-        return new MyTeamSettingsPage();
-    }
-
     public GithubRepoSettingsPage openGithubRepoSettings() {
         githubRepoSettingsLink.click();
         return new GithubRepoSettingsPage();
