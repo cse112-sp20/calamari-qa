@@ -11,7 +11,7 @@ Libraries used:
 
 - Clone the project through git
 - With Intellij IDEA, hit import project from existing sources
-- When prompted, select the pom.xml file in the `test` directory 
+- When prompted, select the pom.xml file in the root directory 
 - After that, everything should be correctly set up.
 
 # Running a test
