@@ -7,7 +7,6 @@ public class SettingsNavigationTest extends BaseWebTest {
         // verifications are automatically done in constructors, so no need to assert here
         extensionPage.openSettingsPage()
             .openVelocityRaptorSettingsPage()
-            .openMyTeamSettingsPage()
             .openGithubRepoSettings()
             .openGeneralSettingsPage()
             .backToExtensionPage();
