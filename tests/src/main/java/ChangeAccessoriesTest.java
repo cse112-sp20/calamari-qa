@@ -21,11 +21,13 @@ public class ChangeAccessoriesTest extends BaseWebTest {
         assertTrue(extensionPage.isRaptorWearingAccessory(AccessoryNames.MAGIC_HAT));
     }
 
-    /*
     @Test
     public void testChangeBackGear() {
-        raptorSettingsPage.setAccessoryType(AccessoryTypes.BACK);
-    } */
+        extensionPage = raptorSettingsPage.setAccessoryType(AccessoryTypes.BACK)
+            .selectAccessoryByName(AccessoryNames.BACK_ANGEL_WING)
+            .backToExtensionPage();
+        assertTrue(extensionPage.isRaptorWearingAccessory("Back Angel Wing Accesory"));
+    }
 
 
     @Test
