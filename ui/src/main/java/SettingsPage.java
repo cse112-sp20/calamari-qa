@@ -6,7 +6,7 @@ public abstract class SettingsPage extends BasePage {
 
     private final SelenideElement generalSettingsLink = $x("//a[contains(text(),'General')]");
 
-    private final SelenideElement velocityRaptorSettingsLink = $x("//a[contains(text(),'VelocityRaptor')]");
+    private final SelenideElement velocityRaptorSettingsLink = $x("//a[contains(text(),'Customize')]");
 
     private final SelenideElement myTeamSettingsLink = $x("//a[contains(text(),'My Team')]");
 
