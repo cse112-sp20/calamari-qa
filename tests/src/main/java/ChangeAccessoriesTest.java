@@ -8,7 +8,7 @@ public class ChangeAccessoriesTest extends BaseWebTest {
     VelocityRaptorSettingsPage raptorSettingsPage;
 
     @BeforeMethod
-    public void initTestData(){
+    public void initTestData() {
         raptorSettingsPage = extensionPage.openSettingsPage()
             .openVelocityRaptorSettingsPage();
     }
@@ -21,11 +21,13 @@ public class ChangeAccessoriesTest extends BaseWebTest {
         assertTrue(extensionPage.isRaptorWearingAccessory(AccessoryNames.MAGIC_HAT));
     }
 
-    /*
     @Test
     public void testChangeBackGear() {
-        raptorSettingsPage.setAccessoryType(AccessoryTypes.BACK);
-    } */
+        extensionPage = raptorSettingsPage.setAccessoryType(AccessoryTypes.BACK)
+            .selectAccessoryByName(AccessoryNames.BACK_ANGEL_WING)
+            .backToExtensionPage();
+        assertTrue(extensionPage.isRaptorWearingAccessory(AccessoryNames.BACK_ANGEL_WING));
+    }
 
 
     @Test
@@ -33,7 +35,7 @@ public class ChangeAccessoriesTest extends BaseWebTest {
         extensionPage = raptorSettingsPage.setAccessoryType(AccessoryTypes.TAIL)
             .selectAccessoryByName(AccessoryNames.SPIKED_ORANGE_TAIL)
             .backToExtensionPage();
-        assertTrue(extensionPage.isRaptorWearingAccessory("Spiked Orange Tail Accesory"));
+        assertTrue(extensionPage.isRaptorWearingAccessory(AccessoryNames.SPIKED_ORANGE_TAIL));
     }
 
     @Test
@@ -41,7 +43,7 @@ public class ChangeAccessoriesTest extends BaseWebTest {
         extensionPage = raptorSettingsPage.setAccessoryType(AccessoryTypes.HAND)
             .selectAccessoryByName(AccessoryNames.SABER)
             .backToExtensionPage();
-        assertTrue(extensionPage.isRaptorWearingAccessory("Saber Accesory"));
+        assertTrue(extensionPage.isRaptorWearingAccessory(AccessoryNames.SABER));
     }
 
 }
