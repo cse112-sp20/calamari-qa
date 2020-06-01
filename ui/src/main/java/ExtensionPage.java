@@ -17,7 +17,6 @@ public class ExtensionPage extends BasePage {
     public ExtensionPage() {
         verifyIsOpened();
     }
-
     @Override
     public void verifyIsOpened() {
         raptorSpeedField.shouldBe(Condition.visible);

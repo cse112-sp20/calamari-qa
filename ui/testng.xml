@@ -1,0 +1,7 @@
+<suite name="alltests">
+    <test name="all">
+        <packages>
+            <package name=""></package>
+        </packages>
+    </test>
+</suite>
