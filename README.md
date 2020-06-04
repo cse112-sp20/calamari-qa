@@ -2,11 +2,6 @@
 
 Framework for testing Velocity Raptor chrome extension by CalamariCrew.
 
-Libraries used:
-- Selenide
-- TestNG
-- Maven 
-
 # Get Started 
 
 - Clone the project through git
@@ -14,7 +9,13 @@ Libraries used:
 - When prompted, select the pom.xml file in the root directory 
 - After that, everything should be correctly set up.
 
-# Running a test
+# Running tests
 
-- Make sure that the Velocity Raptor extension is running locally 
-- Go ahead and pick any test and run (Do note that running these tests will take a 30 second startup)
+- Run the testng.xml file in the /ui module
+- For running tests individually, they are found in /ui/src/test
+
+# Libraries used:
+- Selenide
+- TestNG
+- Maven 
+
