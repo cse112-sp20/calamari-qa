@@ -11,7 +11,7 @@ Framework for testing Velocity Raptor chrome extension by CalamariCrew.
 
 # Running tests
 
-- Run the testng.xml file in the /ui module
+- Run the testng.xml file in the /ui module to run all tests
 - For running tests individually, they are found in /ui/src/test
 
 # Libraries used:
