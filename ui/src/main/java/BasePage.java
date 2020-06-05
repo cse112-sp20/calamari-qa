@@ -6,9 +6,8 @@ public abstract class BasePage {
 
     public abstract void verifyIsOpened();
 
-    public static ExtensionPage openExtension() {
+    public static void openExtension() {
         getWebDriver().get(extensionLink);
-        return new ExtensionPage();
     }
 
 }

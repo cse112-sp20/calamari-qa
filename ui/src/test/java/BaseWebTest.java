@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 import static org.testng.Assert.assertTrue;
@@ -25,13 +26,14 @@ public class BaseWebTest {
     protected ExtensionPage extensionPage;
 
     @BeforeClass(alwaysRun = true)
-    public void startBrowser() {
+    public void startBrowser() throws InterruptedException {
         ChromeOptions chromeOptions = getChromeOptions();
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         setWebDriver(driver);
-        extensionPage = BasePage.openExtension();
+        BasePage.openExtension();
+        authenticateWithGithub();
     }
 
     // Setting up extensions for the driver
@@ -42,6 +44,16 @@ public class BaseWebTest {
             resourcesDirectory.toFile().getAbsolutePath() + "/" + extension)));
         options.addExtensions(extensionFiles);
         return options;
+    }
+
+    private void authenticateWithGithub() throws InterruptedException {
+        $("button[id='signin']").click();
+        Thread.sleep(5000);
+        var handles = new ArrayList<>(getWebDriver().getWindowHandles());
+        getWebDriver().switchTo().window(handles.get(1));
+        var githubAuthPage = new GithubAuthenticationPage();
+        githubAuthPage.setUsername(GithubCredentials.TEST_USERNAME);
+        githubAuthPage.setPassword(GithubCredentials.TEST_PASSWORD);
     }
 
     @AfterClass(alwaysRun = true)
