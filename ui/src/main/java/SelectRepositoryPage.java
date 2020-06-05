@@ -7,7 +7,7 @@ import static java.lang.String.format;
 
 public class SelectRepositoryPage extends BasePage {
 
-    private final SelenideElement selectRepositoryHeader = $x("//h1[contains(text(),'Choose')]");
+    private final SelenideElement selectRepositoryHeader = $x("//h3[contains(text(),'Choose')]");
 
     private final SelenideElement selectButton = $("button[id='selectRepoButton']");
 

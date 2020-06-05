@@ -6,11 +6,11 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class ExtensionPage extends BasePage {
 
+    private final SelenideElement extensionPageHeader = $("div[class='card-header']");
+
     private final SelenideElement raptorSpeedField = $x("//div[contains(text(),'Speed:')]");
 
     private final SelenideElement settingsIcon = $("a[href='/root/html/user_settings.html']");
-
-    private final SelenideElement raptorImage = $x("");
 
     private final ElementsCollection tasksList = $$x("");
 
@@ -19,7 +19,7 @@ public class ExtensionPage extends BasePage {
     }
     @Override
     public void verifyIsOpened() {
-        raptorSpeedField.shouldBe(Condition.visible);
+        extensionPageHeader.shouldBe(Condition.visible);
     }
 
     public SettingsPage openSettingsPage(){

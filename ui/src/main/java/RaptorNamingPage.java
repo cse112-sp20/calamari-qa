@@ -6,9 +6,7 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class RaptorNamingPage extends BasePage {
 
-    private final SelenideElement raptorNamingPageHeader = $("img[alt='Raptor Line Logo']");
-
-    private final SelenideElement nameYourRaptorButton = $x("//a[contains(text(),'Name your new raptor!')]");
+    private final SelenideElement raptorNamingPageHeader = $("img[alt='Default Raptor']");
 
     private final SelenideElement raptorNameField = $("input[name='raptorName']");
 
@@ -20,11 +18,6 @@ public class RaptorNamingPage extends BasePage {
 
     public void verifyIsOpened(){
         raptorNamingPageHeader.shouldBe(Condition.visible);
-    }
-
-    public RaptorNamingPage clickNameYourRaptorButton(){
-        nameYourRaptorButton.click();
-        return this;
     }
 
     public RaptorNamingPage setRaptorName(String name){

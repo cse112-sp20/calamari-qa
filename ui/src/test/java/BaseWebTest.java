@@ -62,8 +62,7 @@ public class BaseWebTest {
             .clickLogin()
             .authorizeGithub();
         Thread.sleep(5000);
-        var repositorySettingPage = raptorNamingPage.clickNameYourRaptorButton()
-            .setRaptorName(testRaptorName)
+        var repositorySettingPage = raptorNamingPage.setRaptorName(testRaptorName)
             .submitName();
         extensionPage = repositorySettingPage.selectRepositoryByName(startingRepo)
             .submitRepositorySelection();

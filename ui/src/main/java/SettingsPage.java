@@ -1,18 +1,19 @@
 import com.codeborne.selenide.SelenideElement;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 public abstract class SettingsPage extends BasePage {
 
     private final SelenideElement generalSettingsLink = $x("//a[contains(text(),'General')]");
 
-    private final SelenideElement velocityRaptorSettingsLink = $x("//a[contains(text(),'Customize')]");
+    private final SelenideElement velocityRaptorSettingsLink = $x("//a[contains(text(),'My VelocityRaptor')]");
 
     private final SelenideElement myTeamSettingsLink = $x("//a[contains(text(),'My Team')]");
 
     private final SelenideElement githubRepoSettingsLink = $x("//a[contains(text(),'Github Repo')]");
 
-    private final SelenideElement backButton = $x("//i[@class='fa fa-arrow-left ']");
+    private final SelenideElement backButton = $("img[alt='go back']");
 
     public GeneralSettingsPage openGeneralSettingsPage() {
         generalSettingsLink.click();
