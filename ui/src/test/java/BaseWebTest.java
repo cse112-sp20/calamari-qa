@@ -23,17 +23,21 @@ public class BaseWebTest {
 
     private static final String[] EXTENSIONS = new String[] {"velocity_raptor.crx"};
 
+    protected String testRaptorName = "Test Raptor";
+
+    protected String startingRepo = Repositoriies.TEST_REPOSITORY_ONE;
+
     protected ExtensionPage extensionPage;
 
     @BeforeClass(alwaysRun = true)
-    public void startBrowser() throws InterruptedException {
+    public void startBrowserInitExtension() throws InterruptedException {
         ChromeOptions chromeOptions = getChromeOptions();
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         setWebDriver(driver);
         BasePage.openExtension();
-        authenticateWithGithub();
+        setupExtension();
     }
 
     // Setting up extensions for the driver
@@ -46,14 +50,23 @@ public class BaseWebTest {
         return options;
     }
 
-    private void authenticateWithGithub() throws InterruptedException {
+    // We get verifications here due to page constructors
+    private void setupExtension() throws InterruptedException {
         $("button[id='signin']").click();
         Thread.sleep(5000);
         var handles = new ArrayList<>(getWebDriver().getWindowHandles());
         getWebDriver().switchTo().window(handles.get(1));
         var githubAuthPage = new GithubAuthenticationPage();
-        githubAuthPage.setUsername(GithubCredentials.TEST_USERNAME);
-        githubAuthPage.setPassword(GithubCredentials.TEST_PASSWORD);
+        var raptorNamingPage = githubAuthPage.setUsername(GithubCredentials.TEST_USERNAME)
+            .setPassword(GithubCredentials.TEST_PASSWORD)
+            .clickLogin()
+            .authorizeGithub();
+        Thread.sleep(5000);
+        var repositorySettingPage = raptorNamingPage.clickNameYourRaptorButton()
+            .setRaptorName(testRaptorName)
+            .submitName();
+        extensionPage = repositorySettingPage.selectRepositoryByName(startingRepo)
+            .submitRepositorySelection();
     }
 
     @AfterClass(alwaysRun = true)
