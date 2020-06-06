@@ -15,45 +15,45 @@ public class ExtensionPage extends BasePage {
 
     private final SelenideElement settingsIcon = $("a[href='/root/html/user_settings.html']");
 
-    private final ElementsCollection tasksList = $("ul[id='githubIssuesList']").$$("li");
+    private final ElementsCollection issueList = $("ul[id='githubIssuesList']").$$("li");
 
     public ExtensionPage() {
         verifyIsOpened();
     }
+
     @Override
     public void verifyIsOpened() {
         extensionPageHeader.shouldBe(Condition.visible);
     }
 
-    public SettingsPage openSettingsPage(){
+    public SettingsPage openSettingsPage() {
         settingsIcon.click();
         return new GeneralSettingsPage();
     }
 
-    public ExtensionPage markTaskAtIndexComplete(int index){
-        SelenideElement task = getTaskAtIndex(index);
+    public ExtensionPage closeIssueAtIndex(int index) {
+        SelenideElement issue = getIssueAtIndex(index);
         // TODO: Fill in xpath for checkbox element within task here
-        SelenideElement taskCheckbox = task.$x("");
-        taskCheckbox.click();
+        issue.$("input[type='checkbox']").click();
         return this;
     }
 
-    public boolean isRaptorRunningAtSpeed(int expectedSpeed){
+    public boolean isRaptorRunningAtSpeed(int expectedSpeed) {
         int currentRaptorSpeed = Integer.parseInt(raptorSpeedField.getValue().substring(14,16));
         return expectedSpeed == currentRaptorSpeed;
     }
 
-    public SelenideElement getTaskAtIndex(int index){
-        return tasksList.get(index);
+    public SelenideElement getIssueAtIndex(int index){
+        return issueList.get(index);
     }
 
-    public List<String> getAllIssues(){
+    public List<String> getAllIssues() {
         var issues = new ArrayList<String>();
-        tasksList.stream().forEach(issue -> issues.add(issue.getText()));
+        issueList.stream().forEach(issue -> issues.add(issue.getText()));
         return issues;
     }
 
-    public boolean isRaptorWearingAccessory(String accessoryName){
+    public boolean isRaptorWearingAccessory(String accessoryName) {
         if ($(String.format("img[alt='%s']", accessoryName)).isDisplayed()){
             return true;
         }
