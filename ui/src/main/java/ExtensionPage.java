@@ -2,6 +2,9 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.codeborne.selenide.Selenide.*;
 
 public class ExtensionPage extends BasePage {
@@ -12,7 +15,7 @@ public class ExtensionPage extends BasePage {
 
     private final SelenideElement settingsIcon = $("a[href='/root/html/user_settings.html']");
 
-    private final ElementsCollection tasksList = $$x("");
+    private final ElementsCollection tasksList = $("ul[id='githubIssuesList']").$$("li");
 
     public ExtensionPage() {
         verifyIsOpened();
@@ -42,6 +45,12 @@ public class ExtensionPage extends BasePage {
 
     public SelenideElement getTaskAtIndex(int index){
         return tasksList.get(index);
+    }
+
+    public List<String> getAllIssues(){
+        var issues = new ArrayList<String>();
+        tasksList.stream().forEach(issue -> issues.add(issue.getText()));
+        return issues;
     }
 
     public boolean isRaptorWearingAccessory(String accessoryName){
