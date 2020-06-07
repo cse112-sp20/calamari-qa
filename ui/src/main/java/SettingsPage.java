@@ -9,8 +9,6 @@ public abstract class SettingsPage extends BasePage {
 
     private final SelenideElement velocityRaptorSettingsLink = $x("//a[contains(text(),'My VelocityRaptor')]");
 
-    private final SelenideElement myTeamSettingsLink = $x("//a[contains(text(),'My Team')]");
-
     private final SelenideElement githubRepoSettingsLink = $x("//a[contains(text(),'Github Repo')]");
 
     private final SelenideElement backButton = $("img[alt='go back']");

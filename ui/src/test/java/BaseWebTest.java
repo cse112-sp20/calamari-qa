@@ -12,7 +12,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 import static org.testng.Assert.assertTrue;
@@ -52,16 +51,13 @@ public class BaseWebTest {
 
     // We get verifications here due to page constructors
     private void setupExtension() throws InterruptedException {
-        $("button[id='signin']").click();
-        Thread.sleep(5000);
-        var handles = new ArrayList<>(getWebDriver().getWindowHandles());
-        getWebDriver().switchTo().window(handles.get(1));
-        var githubAuthPage = new GithubAuthenticationPage();
-        var raptorNamingPage = githubAuthPage.setUsername(GithubCredentials.TEST_USERNAME)
+        var linkToGithubPage = new LinkToGithubPage();
+        var raptorNamingPage = linkToGithubPage.beginLinkToGithub()
+            .setUsername(GithubCredentials.TEST_USERNAME)
             .setPassword(GithubCredentials.TEST_PASSWORD)
             .clickLogin()
             .authorizeGithub();
-        Thread.sleep(5000);
+        Thread.sleep(3000);
         var repositorySettingPage = raptorNamingPage.setRaptorName(testRaptorName)
             .submitName();
         extensionPage = repositorySettingPage.selectRepositoryByName(startingRepo)

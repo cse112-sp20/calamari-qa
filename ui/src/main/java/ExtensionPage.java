@@ -26,7 +26,7 @@ public class ExtensionPage extends BasePage {
         extensionPageHeader.shouldBe(Condition.visible);
     }
 
-    public SettingsPage openSettingsPage() {
+    public GeneralSettingsPage openSettingsPage() {
         settingsIcon.click();
         return new GeneralSettingsPage();
     }
@@ -39,7 +39,7 @@ public class ExtensionPage extends BasePage {
     }
 
     public boolean isRaptorRunningAtSpeed(int expectedSpeed) {
-        int currentRaptorSpeed = Integer.parseInt(raptorSpeedField.getValue().substring(14,16));
+        int currentRaptorSpeed = getCurrentVelocity();
         return expectedSpeed == currentRaptorSpeed;
     }
 
@@ -58,6 +58,11 @@ public class ExtensionPage extends BasePage {
             return true;
         }
         return false;
+    }
+
+    public int getCurrentVelocity(){
+        var raptorSpeedString = raptorSpeedField.getText();
+        return Integer.parseInt(raptorSpeedString.replaceAll("[\\D]", ""));
     }
 
 }
