@@ -19,8 +19,6 @@ public class GithubAuthenticationPage extends BasePage {
 
     private final String authorizeButtonSelector = "button[name='authorize']";
 
-    private final String authorizeDropdownSelector = "button[aria-label='More information about this request']";
-
     public GithubAuthenticationPage() {
         verifyIsOpened();
     }
@@ -54,12 +52,6 @@ public class GithubAuthenticationPage extends BasePage {
         var handles = new ArrayList<>(getWebDriver().getWindowHandles());
         getWebDriver().switchTo().window(handles.get(0));
         return new RaptorNamingPage();
-    }
-
-    public void loginWithCredentials(String username, String password){
-        this.setUsername(username)
-            .setPassword(password)
-            .clickLogin();
     }
 
 }
