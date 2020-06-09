@@ -7,7 +7,7 @@ public class IssuesTest extends BaseWebTest {
     private final String unassignedIssue = "Unassigned";
 
     @Test
-    public void testCloseIssue(){
+    public void testCloseIssue() {
         var issuesBefore = extensionPage.getAllIssues();
         extensionPage
             .closeIssueAtIndex(0);
@@ -17,7 +17,7 @@ public class IssuesTest extends BaseWebTest {
 
 
     @Test
-    public void testIssueNotAssignedDoesNotAppear(){
+    public void testIssueNotAssignedDoesNotAppear() {
         var issues = extensionPage.getAllIssues();
         issues.forEach(issue -> assertNotEquals(issue, unassignedIssue));
     }
