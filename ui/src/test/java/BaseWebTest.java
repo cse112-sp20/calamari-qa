@@ -30,8 +30,8 @@ public class BaseWebTest {
 
     @BeforeClass(alwaysRun = true)
     public void startBrowserInitExtension() throws InterruptedException {
-        ChromeOptions chromeOptions = getChromeOptions();
         WebDriverManager.chromedriver().setup();
+        ChromeOptions chromeOptions = getChromeOptions();
         WebDriver driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         setWebDriver(driver);
