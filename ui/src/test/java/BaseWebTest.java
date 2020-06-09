@@ -46,9 +46,6 @@ public class BaseWebTest {
         Arrays.stream(EXTENSIONS).forEach(extension -> extensionFiles.add(new File(
             resourcesDirectory.toFile().getAbsolutePath() + "/" + extension)));
         options.addExtensions(extensionFiles);
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--headless");
         return options;
     }
 
