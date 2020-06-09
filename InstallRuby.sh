@@ -1,3 +1,3 @@
 #!/bin/sh
-apt install ruby
+sudo apt install ruby
 
