@@ -59,6 +59,7 @@ public class BaseWebTest {
         if (githubAuthenticationPage.isOpened()){
             // put in recovery code
         }
+        var raptorNamingPage = new RaptorNamingPage();
         Thread.sleep(3000);
         var repositorySettingPage = raptorNamingPage.setRaptorName(testRaptorName)
             .submitName();
