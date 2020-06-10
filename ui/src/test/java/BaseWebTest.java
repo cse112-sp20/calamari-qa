@@ -51,7 +51,11 @@ public class BaseWebTest {
         return options;
     }
 
-    // We get verifications here due to page constructors
+    /**
+     * If this is the first time testing on a device, github will ask for a login verification code
+     * sent to our gmail. In that case, we go to gmail and rip that code and put it in
+     * @throws InterruptedException
+     */
     private void setupExtension() throws InterruptedException {
         var linkToGithubPage = new LinkToGithubPage();
         var githubAuthPage = linkToGithubPage.beginLinkToGithub()

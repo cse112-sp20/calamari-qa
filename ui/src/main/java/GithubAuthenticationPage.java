@@ -21,6 +21,8 @@ public class GithubAuthenticationPage extends BasePage {
 
     private final String emailCodeSelector = "input[placeholder='6-digit code']";
 
+    private final String submitVerificationCodeSelector = "";
+
     public GithubAuthenticationPage() {
         verifyIsOpened();
     }
@@ -63,6 +65,8 @@ public class GithubAuthenticationPage extends BasePage {
     public GithubAuthenticationPage sendVerificationCode(String emailCode) {
         executeJavaScript(format("document.querySelector(\"webview\").executeScript({code: \"" +
             "document.querySelector(\\\"%s\\\").value = '%s'\"})", emailCodeSelector, emailCode));
+        executeJavaScript(format("document.querySelector(\"webview\").executeScript({code: \"" +
+            "document.querySelector(\\\"%s\\\").click()\"})", submitVerificationCodeSelector));
         return this;
     }
 
