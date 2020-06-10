@@ -14,7 +14,6 @@ import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
-import static org.testng.Assert.assertTrue;
 
 public class BaseWebTest {
 
@@ -51,14 +50,6 @@ public class BaseWebTest {
 
     // We get verifications here due to page constructors
     private void setupExtension() throws InterruptedException {
-        var linkToGithubPage = new LinkToGithubPage();
-        var githubAuthenticationPage = linkToGithubPage.beginLinkToGithub()
-            .setUsername(GithubCredentials.TEST_USERNAME)
-            .setPassword(GithubCredentials.TEST_PASSWORD)
-            .clickLogin();
-        if (githubAuthenticationPage.isOpened()){
-            // put in recovery code
-        }
         var raptorNamingPage = new RaptorNamingPage();
         Thread.sleep(3000);
         var repositorySettingPage = raptorNamingPage.setRaptorName(testRaptorName)
