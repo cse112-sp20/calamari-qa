@@ -28,6 +28,10 @@ public class GithubAuthenticationPage extends BasePage {
         githubHeader.shouldBe(Condition.exist);
     }
 
+    public boolean isOpened(){
+        return githubHeader.isDisplayed();
+    }
+
     public GithubAuthenticationPage setUsername(String username) {
         executeJavaScript(format("document.querySelector(\"webview\").executeScript({code: \"" +
             "document.querySelector(\\\"%s\\\").value = '%s'\"})", usernameFieldSelector, username));

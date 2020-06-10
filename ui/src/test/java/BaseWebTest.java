@@ -52,11 +52,13 @@ public class BaseWebTest {
     // We get verifications here due to page constructors
     private void setupExtension() throws InterruptedException {
         var linkToGithubPage = new LinkToGithubPage();
-        var raptorNamingPage = linkToGithubPage.beginLinkToGithub()
+        var githubAuthenticationPage = linkToGithubPage.beginLinkToGithub()
             .setUsername(GithubCredentials.TEST_USERNAME)
             .setPassword(GithubCredentials.TEST_PASSWORD)
-            .clickLogin()
-            .authorizeGithub();
+            .clickLogin();
+        if (githubAuthenticationPage.isOpened()){
+            // put in recovery code
+        }
         Thread.sleep(3000);
         var repositorySettingPage = raptorNamingPage.setRaptorName(testRaptorName)
             .submitName();
