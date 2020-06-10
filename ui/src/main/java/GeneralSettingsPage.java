@@ -19,9 +19,9 @@ public class GeneralSettingsPage extends SettingsPage {
         generalSettingsHeader.shouldBe(Condition.visible);
     }
 
-    public LinkToGithubPage resetVelocityRaptor(){
+    public RaptorNamingPage resetVelocityRaptor(){
         resetButton.click();
-        return new LinkToGithubPage();
+        return new RaptorNamingPage();
     }
 
 }
