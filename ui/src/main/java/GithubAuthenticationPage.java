@@ -21,7 +21,7 @@ public class GithubAuthenticationPage extends BasePage {
 
     private final String emailCodeSelector = "input[placeholder='6-digit code']";
 
-    private final String submitVerificationCodeSelector = "";
+    private final String submitVerificationCodeSelector = "button[type='submit']";
 
     public GithubAuthenticationPage() {
         verifyIsOpened();
