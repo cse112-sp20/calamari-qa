@@ -19,6 +19,8 @@ public class GithubAuthenticationPage extends BasePage {
 
     private final String authorizeButtonSelector = "button[name='authorize']";
 
+    private final String emailCodeSelector = "input[placeholder='6-digit code']";
+
     public GithubAuthenticationPage() {
         verifyIsOpened();
     }
@@ -26,6 +28,10 @@ public class GithubAuthenticationPage extends BasePage {
     @Override
     public void verifyIsOpened() {
         githubHeader.shouldBe(Condition.exist);
+    }
+
+    public boolean isOpened() {
+        return githubHeader.isDisplayed();
     }
 
     public GithubAuthenticationPage setUsername(String username) {
@@ -52,6 +58,12 @@ public class GithubAuthenticationPage extends BasePage {
         var handles = new ArrayList<>(getWebDriver().getWindowHandles());
         getWebDriver().switchTo().window(handles.get(0));
         return new RaptorNamingPage();
+    }
+
+    public GithubAuthenticationPage sendVerificationCode(String emailCode) {
+        executeJavaScript(format("document.querySelector(\"webview\").executeScript({code: \"" +
+            "document.querySelector(\\\"%s\\\").value = '%s'\"})", emailCodeSelector, emailCode));
+        return this;
     }
 
 }

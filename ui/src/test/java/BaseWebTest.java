@@ -28,6 +28,8 @@ public class BaseWebTest {
 
     protected ExtensionPage extensionPage;
 
+    private String verificationCode = "";
+
     @BeforeClass(alwaysRun = true)
     public void startBrowserInitExtension() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
@@ -52,16 +54,34 @@ public class BaseWebTest {
     // We get verifications here due to page constructors
     private void setupExtension() throws InterruptedException {
         var linkToGithubPage = new LinkToGithubPage();
-        var raptorNamingPage = linkToGithubPage.beginLinkToGithub()
-            .setUsername(GithubCredentials.TEST_USERNAME)
-            .setPassword(GithubCredentials.TEST_PASSWORD)
-            .clickLogin()
-            .authorizeGithub();
+        var githubAuthPage = linkToGithubPage.beginLinkToGithub()
+            .setUsername(Credentials.TEST_USERNAME_GITHUB)
+            .setPassword(Credentials.TEST_PASSWORD_GITHUB)
+            .clickLogin();
+        Thread.sleep(3000);
+        if (githubAuthPage.isOpened()) {
+            loginGoogle();
+            githubAuthPage.sendVerificationCode(verificationCode);
+        }
+        var handles = new ArrayList<>(getWebDriver().getWindowHandles());
+        getWebDriver().switchTo().window(handles.get(0));
+        var raptorNamingPage = new RaptorNamingPage();
         Thread.sleep(3000);
         var repositorySettingPage = raptorNamingPage.setRaptorName(testRaptorName)
             .submitName();
         extensionPage = repositorySettingPage.selectRepositoryByName(startingRepo)
             .submitRepositorySelection();
+    }
+
+    private void loginGoogle() throws InterruptedException {
+        var handles = new ArrayList<>(getWebDriver().getWindowHandles());
+        getWebDriver().switchTo().window(handles.get(0));
+        getWebDriver().get("https://accounts.google.com");
+        var googleLoginPage = new GooglePage();
+        googleLoginPage.loginAsUser(Credentials.TEST_USERNAME_GMAIL, Credentials.TEST_PASSWORD_GMAIL);
+        getWebDriver().get("https://gmail.com");
+        verificationCode = googleLoginPage.getGithubVerificationCode();
+        getWebDriver().switchTo().window(handles.get(1));
     }
 
     @AfterClass(alwaysRun = true)
