@@ -16,6 +16,7 @@ OR
 - When prompted, select the pom.xml file in the root directory 
 - After that, everything should be correctly set up.
 
+* **NOTE** that if you are trying to test against a new version of the extension, you need the access token for the test github account and you need to modify the app code with that token before packing it into a crx and moving it the resources directory. 
 
 # Libraries used:
 - Selenide
