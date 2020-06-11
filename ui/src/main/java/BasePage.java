@@ -1,3 +1,5 @@
+import com.codeborne.selenide.Selenide;
+
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public abstract class BasePage {
@@ -8,6 +10,7 @@ public abstract class BasePage {
 
     public static void openExtension() {
         getWebDriver().get(extensionLink);
+        Selenide.refresh();
     }
 
 }
