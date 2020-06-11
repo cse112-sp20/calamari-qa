@@ -4,7 +4,7 @@ public class ResetTest extends BaseWebTest {
 
     @Test
     public void testReset(){
-        var linkToGithubPage = extensionPage.openSettingsPage()
+        extensionPage.openSettingsPage()
             .resetVelocityRaptor();
     }
 
